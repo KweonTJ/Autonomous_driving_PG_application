@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="topic_tools" type="relay" name="lidar3d_to_velodyne" args="/lidar3D /velodyne_points" />
+    <node pkg="lidar_pkg" type="lidar_clustering.py" name="lidar_clustering" output="screen">
+        <param name="ransac_threshold" value="0.05" />
+        <param name="min_cluster_size" value="4" />
+        <param name="min_samples" value="3" />
+        <param name="cluster_selection_epsilon" value="0.25" />
+
+        <param name="roi_x_min" value="-7.0" />
+        <param name="roi_x_max" value="15.0" />
+        <param name="roi_y_min" value="-2.5" />
+        <param name="roi_y_max" value="2.5" />
+        <param name="roi_z_min" value="-0.4" />
+        <param name="roi_z_max" value="2.0" />
+
+        <param name="lidar_topic" value="/velodyne_points" />
+    </node>
+</launch>
